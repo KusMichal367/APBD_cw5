@@ -33,10 +33,12 @@ public class AdvancedEmpDeptTests
     {
         var emps = Database.GetEmps();
 
-        // var firstTwo = null; 
-        //
-        // Assert.Equal(2, firstTwo.Count);
-        // Assert.True(firstTwo[0].HireDate <= firstTwo[1].HireDate);
+        var firstTwo = emps.OrderBy(emp=> emp.HireDate).Take(2).ToList(); 
+        
+        Assert.Equal(2, firstTwo.Count);
+        Assert.True(firstTwo[0].HireDate <= firstTwo[1].HireDate);
+        Assert.Contains(firstTwo, r => r.EName == "ALLEN");
+        Assert.Contains(firstTwo, r => r.EName == "SMITH");
     }
 
     // 14. DISTINCT job titles
