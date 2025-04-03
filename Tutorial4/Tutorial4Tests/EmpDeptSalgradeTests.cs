@@ -65,9 +65,10 @@ public class EmpDeptSalgradeTests
         var emps = Database.GetEmps();
         var depts = Database.GetDepts();
 
-        //var result = null; 
+        var result = (from emp in emps join dept in depts on emp.DeptNo equals dept.DeptNo 
+                select new {emp.EName, dept.DName}).ToList(); 
 
-        //Assert.Contains(result, r => r.DName == "SALES" && r.EName == "ALLEN");
+        Assert.Contains(result, r => r.DName == "SALES" && r.EName == "ALLEN");
     }
 
     // 6. Group by DeptNo
