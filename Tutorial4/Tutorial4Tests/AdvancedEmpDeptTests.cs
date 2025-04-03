@@ -74,9 +74,10 @@ public class AdvancedEmpDeptTests
     {
         var emps = Database.GetEmps();
 
-        // var result = null; 
-        //
-        // Assert.True(result);
+        var result = emps.All(emp=>emp.Sal>500); 
+        
+        Assert.True(result);
+        Assert.Equal(emps.Count, emps.Count(emp => emp.Sal>500));
     }
 
     // 17. Any employee with commission over 400
