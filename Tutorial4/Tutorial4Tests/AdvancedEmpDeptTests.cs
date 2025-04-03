@@ -129,8 +129,10 @@ public class AdvancedEmpDeptTests
         var depts = Database.GetDepts();
         var grades = Database.GetSalgrades();
 
-        // var result = null; 
-        //
-        // Assert.Contains(result, r => r.EName == "ALLEN" && r.DName == "SALES" && r.Grade == 3);
+        var result = from emp in emps join dept in depts on emp.DeptNo equals dept.DeptNo
+        join grade in grades on 1 equals 1
+        where emp.Sal >= grade.Losal && emp.Sal <= grade.Hisal select new {emp.EName, DName = dept.DName, grade.Grade};
+        
+        Assert.Contains(result, r => r.EName == "ALLEN" && r.DName == "SALES" && r.Grade == 3);
     }
 }
