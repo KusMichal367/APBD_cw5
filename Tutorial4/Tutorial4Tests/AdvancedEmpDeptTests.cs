@@ -100,9 +100,10 @@ public class AdvancedEmpDeptTests
     {
         var emps = Database.GetEmps();
 
-        // var result = null;
-        //
-        // Assert.Contains(result, r => r.Employee == "SMITH" && r.Manager == "FORD");
+        var result = from emp1 in emps join emp2 in emps on emp1.Mgr equals emp2.EmpNo
+            select new { Employee=emp1.EName, Manager=emp2.EName };
+        
+        Assert.Contains(result, r => r.Employee == "SMITH" && r.Manager == "FORD");
     }
 
     // 19. Let clause usage (sal + comm)
