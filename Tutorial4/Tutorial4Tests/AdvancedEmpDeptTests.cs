@@ -87,9 +87,10 @@ public class AdvancedEmpDeptTests
     {
         var emps = Database.GetEmps();
 
-        // var result = null; 
-        //
-        // Assert.True(result);
+        var result = emps.Any(emp => emp.Sal>400); 
+        
+        Assert.True(result);
+        Assert.Contains(emps, emp => emp.EName=="SMITH");
     }
 
     // 18. Self-join to get employee-manager pairs
