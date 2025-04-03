@@ -113,9 +113,11 @@ public class AdvancedEmpDeptTests
     {
         var emps = Database.GetEmps();
 
-        // var result = null; 
-        //
-        // Assert.Contains(result, r => r.EName == "ALLEN" && r.Total == 1900);
+        var result = (from emp in emps let Total = emp.Sal+(emp.Comm??0)
+            select new {emp.EName, Total = Total }).ToList();
+        
+        Assert.Contains(result, r => r.EName == "ALLEN" && r.Total == 1900);
+        Assert.Contains(result, r => r.EName == "KING" && r.Total == 5000);
     }
 
     // 20. Join all three: Emp → Dept → Salgrade
